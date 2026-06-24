@@ -1,0 +1,277 @@
+@import "tailwindcss";
+
+@theme {
+  /* Dark mode — officiel */
+  --color-deep-black: #070707;
+  --color-night-blue: #0f172a;
+  --color-slate-dark: #1e293b;
+  --color-premium-orange: #f59e0b;
+  --color-electric-blue: #2563eb;
+  --color-off-white: #f8fafc;
+  --color-light-gray: #94a3b8;
+
+  /* Light mode — officiel */
+  --color-light-bg: #ffffff;
+  --color-light-section: #f8fafc;
+  --color-light-orange: #dc5504;
+  --color-royal-blue: #0d47a1;
+  --color-light-text: #0f172a;
+  --color-light-muted: #475569;
+
+  /* Alias compatibilité */
+  --color-dark-gray: #0f172a;
+  --color-neon-violet: #f59e0b;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-accent: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-hero-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-hero-serif: var(--font-instrument-serif), Georgia, "Times New Roman", serif;
+}
+
+:root {
+  --bg: var(--color-deep-black);
+  --fg: var(--color-off-white);
+  --fg-muted: var(--color-light-gray);
+  --surface: var(--color-night-blue);
+  --surface-elevated: var(--color-slate-dark);
+  --accent: var(--color-premium-orange);
+  --accent-hover: var(--color-electric-blue);
+}
+
+html[data-theme="light"] {
+  --bg: var(--color-light-bg);
+  --fg: var(--color-light-text);
+  --fg-muted: var(--color-light-muted);
+  --surface: var(--color-light-section);
+  --surface-elevated: #e2e8f0;
+  --accent: var(--color-light-orange);
+  --accent-hover: var(--color-royal-blue);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-premium-orange) 35%, transparent);
+  color: white;
+}
+
+.glass {
+  background: color-mix(in srgb, var(--surface) 75%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid color-mix(in srgb, var(--fg) 8%, transparent);
+}
+
+.glass-light {
+  background: color-mix(in srgb, var(--surface-elevated) 55%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid color-mix(in srgb, var(--fg) 10%, transparent);
+}
+
+html[data-theme="light"] .glass {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.1);
+}
+
+html[data-theme="light"] .glass-light {
+  background: rgba(241, 245, 249, 0.95);
+  border-color: rgba(15, 23, 42, 0.1);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+}
+
+.glow-orange {
+  box-shadow:
+    0 0 40px rgba(245, 158, 11, 0.3),
+    0 0 80px rgba(245, 158, 11, 0.12);
+}
+
+.glow-blue {
+  box-shadow:
+    0 0 40px rgba(37, 99, 235, 0.3),
+    0 0 60px rgba(37, 99, 235, 0.1);
+}
+
+.glow-text {
+  text-shadow: 0 0 40px rgba(245, 158, 11, 0.45);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #f59e0b 0%, #2563eb 60%, #f8fafc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+html[data-theme="light"] .gradient-text {
+  background: linear-gradient(135deg, #ea580c 0%, #1d4ed8 70%, #0f172a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-glow {
+  background:
+    radial-gradient(ellipse 80% 50% at 15% 45%, rgba(245, 158, 11, 0.12), transparent 50%),
+    radial-gradient(ellipse 65% 45% at 85% 25%, rgba(37, 99, 235, 0.18), transparent 50%),
+    radial-gradient(ellipse 55% 35% at 50% 85%, rgba(37, 99, 235, 0.08), transparent 50%);
+}
+
+html[data-theme="light"] .hero-glow {
+  background:
+    radial-gradient(ellipse 80% 50% at 10% 90%, rgba(186, 230, 253, 0.4), transparent 55%),
+    radial-gradient(ellipse 70% 45% at 95% 10%, rgba(254, 215, 170, 0.3), transparent 50%);
+}
+
+html[data-theme="light"] .card-hover-glow {
+  transition: all 0.3s ease;
+}
+
+html[data-theme="light"] .card-hover-glow:hover {
+  box-shadow: 0 12px 40px rgba(220, 85, 4, 0.15);
+  border-color: rgba(220, 85, 4, 0.3);
+}
+
+.font-serif-hero {
+  font-family: var(--font-hero-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.4px;
+}
+
+.font-sans-hero {
+  font-family: var(--font-hero-sans);
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+.card-hover-glow {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.card-hover-glow:hover {
+  transform: translateY(-6px);
+  border-color: rgba(245, 158, 11, 0.45);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.35),
+    0 0 28px rgba(245, 158, 11, 0.18);
+}
+
+html[data-theme="light"] .card-hover-glow:hover {
+  border-color: rgba(234, 88, 12, 0.35);
+  box-shadow:
+    0 16px 32px rgba(15, 23, 42, 0.08),
+    0 0 24px rgba(234, 88, 12, 0.12);
+}
+
+html[data-theme="light"] section:nth-child(even) {
+  background-color: var(--color-light-section);
+}
+
+/* Light mode - Override dark gradients in sections */
+html[data-theme="light"] div[class*="bg-gradient-to-b"],
+html[data-theme="light"] div[class*="bg-gradient-to-br"],
+html[data-theme="light"] div[class*="bg-gradient-to-t"] {
+  background: transparent !important;
+}
+
+html[data-theme="light"] .absolute.inset-0 {
+  background: transparent !important;
+  opacity: 0.03 !important;
+}
+
+html[data-theme="light"] footer {
+  background-color: var(--color-light-section);
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+/* Add section backgrounds in light mode */
+html[data-theme="light"] section {
+  background-color: var(--color-light-bg);
+}
+
+html[data-theme="light"] section:nth-child(2n) {
+  background-color: var(--color-light-section);
+}
+
+.theme-text {
+  color: var(--fg);
+}
+
+.theme-text-muted {
+  color: var(--fg-muted);
+}
+
+.theme-surface {
+  background-color: var(--surface);
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Light mode - Icons and buttons styling */
+html[data-theme="light"] nav a svg,
+html[data-theme="light"] nav button svg {
+  color: var(--color-light-text);
+  stroke: var(--color-light-text);
+}
+
+html[data-theme="light"] button svg {
+  color: inherit;
+}
+
+/* Ensure text and icons have proper contrast in light mode */
+html[data-theme="light"] .theme-text svg {
+  color: var(--fg);
+}
