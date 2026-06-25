@@ -41,5 +41,7 @@ export function useCursorAnimation<T extends HTMLElement>(
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, [animationIntensity, elementRef]);
+    // elementRef is stable; only re-bind when intensity changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [animationIntensity]);
 }
