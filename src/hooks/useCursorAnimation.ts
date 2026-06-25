@@ -1,12 +1,12 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type RefObject } from "react";
 
 interface CursorPosition {
   x: number;
   y: number;
 }
 
-export function useCursorAnimation(
-  elementRef: React.RefObject<HTMLElement>,
+export function useCursorAnimation<T extends HTMLElement>(
+  elementRef: RefObject<T | null>,
   animationIntensity: number = 1
 ) {
   const cursorPos = useRef<CursorPosition>({ x: 0, y: 0 });
@@ -41,5 +41,5 @@ export function useCursorAnimation(
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, [animationIntensity]);
+  }, [animationIntensity, elementRef]);
 }
